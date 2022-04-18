@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import Costumes from './Costumes';
-import Props from './Props';
+import Costumes from './Components/Costumes';
+import Props from './Components/Props';
 import { Routes, Route, Link } from 'react-router-dom';
 
 function App() {
