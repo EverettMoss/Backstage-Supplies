@@ -1,8 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
+
 import Costumes from './Components/Costumes';
 import Props from './Components/Props';
+import Home from './Components/Home'
+import Login from './Components/Login';
+
 import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Nav, Navbar } from 'react-bootstrap'
@@ -21,14 +25,17 @@ function App() {
       <Nav.Link href="/">Home</Nav.Link>
         <Nav.Link href="costumes">Costumes</Nav.Link>
         <Nav.Link href="props">Props</Nav.Link>
+        <Nav.Link href="login">Login</Nav.Link>
       </Nav>
 
       </Navbar>
       <Routes>
         <Route path="/costumes" element= {<Costumes/>}/>
         <Route path="/props" element= {<Props/>}/>
-
+        <Route path="/login" element= {<Login/>}/>
+        <Route path="/" element= {<Home/>}/>
       </Routes>
+      
   
       
 

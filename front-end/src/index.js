@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Costumes from './Components/Costumes';
 import Props from './Components/Props';
+import Home from './Components/Home';
+import Login from './Components/Login';
 
 ReactDOM.render(
   <BrowserRouter>
