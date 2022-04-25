@@ -48,8 +48,9 @@ function Props(){
                     listOfProps.map((prop) => {
                         return(
                             <div>
-                                Item: {prop.name}
+                                Item - {prop.name} | Material - {prop.material}
                             </div>
+
 
                         );
                     })
@@ -62,3 +63,4 @@ function Props(){
 }
 
 export default Props;
+
