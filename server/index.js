@@ -15,7 +15,6 @@ app.get("/getProps", (req,res) => {
         if(err){
             res.json(err);
         } else{
-            console.log(result);
             res.json(result);
         }
     });
