@@ -43,20 +43,36 @@ function Props(){
             </div>
             
             <div className="PropsDisplay">
+            <table className="table table-striped">
+                <thead className="thead-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Material</th>
+                    <th>Picture</th>
+                    <th>Location</th>
+                    <th>Use Log</th>
+                    <th>Mending Log</th>
+                    <th>To-Do</th>
+                    <th>Notes</th>
+                </tr>
+                </thead>
                 
                 {
                     listOfProps.map((prop) => {
                         return(
-                            <div>
-                                Item - {prop.name} | Material - {prop.material}
-                            </div>
+                            <>
+                            <tr>
+                                <td>{prop.name}</td>
+                                <td>{prop.material}</td>
+                            </tr>
+                            </>
 
 
                         );
                     })
                 }
 
-
+            </table>
             </div>
         </div>
     )
