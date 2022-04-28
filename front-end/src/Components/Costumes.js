@@ -1,12 +1,18 @@
 import React from "react";
 import Axios from "axios";
 import { useState,useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Table, Button, Modal, Form } from 'react-bootstrap'
 
 function Costumes(){
     const [listOfCostumes, setlistOfCostumes] = useState([]);
     const [name, setName] = useState("");
     const [material, setMaterial] = useState("");
     const [size, setSize] = useState("");
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() => {
         Axios.get("http://localhost:8000/getCostumes").then((response) => {
@@ -19,7 +25,7 @@ function Costumes(){
         <div>
             <h1>Welcome to Costumes Page!</h1>
             <div className="CostumeDisplay">
-            <table className="table">
+            <Table striped bordered hover>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -36,6 +42,7 @@ function Costumes(){
                         <th>Notes</th>
                     </tr>
                 </thead>  
+                <tbody>
                 {
                     listOfCostumes.map((costume) => {
                         return(
@@ -57,8 +64,9 @@ function Costumes(){
                         );
                     })
                 }
-
-            </table>
+                
+            </tbody>
+            </Table>
             </div>
         </div>
     )

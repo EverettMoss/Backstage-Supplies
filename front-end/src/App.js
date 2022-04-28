@@ -10,14 +10,14 @@ import Login from './Components/Login';
 import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Nav, Navbar } from 'react-bootstrap'
-import bslogo from './static/backstage supplies logo.png'
+import bslogo from './static/BackStageLogo-V2.png'
 
 function App() {
   return (
     <div className="App">
       <Navbar bg="evergreen" variant="dark"> 
       <Navbar.Brand>
-        <img src={bslogo} height={90} width={155}/>
+        <img src={bslogo} height={90} width={115}/>
         BackStage Supplies
       </Navbar.Brand>
       
