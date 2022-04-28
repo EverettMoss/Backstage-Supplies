@@ -9,11 +9,19 @@ const PropSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    itemCode: {
+        type: String,
+        required: true
+    },
     picture: {
         type: String,
         required: false
     },
     location: {
+        type: String,
+        required: false
+    },
+    propType: {
         type: String,
         required: false
     },

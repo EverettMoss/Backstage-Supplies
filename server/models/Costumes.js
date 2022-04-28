@@ -13,6 +13,10 @@ const CostumeSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    itemCode: {
+        type: String,
+	    required: true
+    },
     size: {
         type: String,
         required: false
@@ -38,7 +42,7 @@ const CostumeSchema = new mongoose.Schema({
         required: true
     },
     lastCleaned: {
-        type: String,
+        type: Date,
         required: false
     },
     mending: {
