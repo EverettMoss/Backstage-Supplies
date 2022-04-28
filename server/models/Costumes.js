@@ -43,7 +43,8 @@ const CostumeSchema = new mongoose.Schema({
     },
     lastCleaned: {
         type: Date,
-        required: false
+        default: Date.now,
+        required: true
     },
     mending: {
         type: String,

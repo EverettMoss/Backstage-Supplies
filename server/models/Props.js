@@ -25,6 +25,11 @@ const PropSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    lastCleaned: {
+        type: Date,
+        default: Date.now,
+        required: true
+    },
     useLog: {
         type: String,
         required: false
