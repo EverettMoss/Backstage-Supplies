@@ -48,7 +48,8 @@ function Props() {
                 { toDo: toDo },
                 { notes: notes }
             ])
-        });
+        }); 
+        handleClose();
 
     };
 
