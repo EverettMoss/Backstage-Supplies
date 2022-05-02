@@ -8,6 +8,12 @@ function Props() {
     const [listOfProps, setlistOfProps] = useState([]);
     const [name, setName] = useState("");
     const [material, setMaterial] = useState("");
+    const [picture, setPicture] = useState("");
+    const [location, setLocation] = useState("");
+    const [useLog, setUseLog] = useState("");
+    const [mending, setMending] = useState("");
+    const [toDo, setToDo] = useState("");
+    const [notes, setNotes] = useState("");
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -23,12 +29,24 @@ function Props() {
     const createProp = () => {
         Axios.post("http://localhost:8000/createProp", {
             name,
-            material
+            material,
+            picture,
+            location,
+            useLog,
+            mending,
+            toDo,
+            notes
         }).then((response) => {
             setlistOfProps([
                 ...listOfProps,
                 { name: name },
-                { material: material }
+                { material: material },
+                { picture: picture },
+                { location: location },
+                { useLog: useLog },
+                { mending: mending },
+                { toDo: toDo },
+                { notes: notes }
             ])
         });
 
@@ -53,7 +71,7 @@ function Props() {
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="name"
+                                    placeholder="name"
                                     onChange={(event) => {setName(event.target.value);}}
                                     autoFocus
                                 />
@@ -65,6 +83,66 @@ function Props() {
                                     type="text"
                                     placeholder ="material"
                                     onChange={(event) => {setMaterial(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Picture</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder ="picture"
+                                    onChange={(event) => {setPicture(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Location</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder ="location"
+                                    onChange={(event) => {setLocation(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Use Log</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder ="use log"
+                                    onChange={(event) => {setUseLog(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Mending</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder ="mending log"
+                                    onChange={(event) => {setMending(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>To-Do</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder ="to do"
+                                    onChange={(event) => {setToDo(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Notes</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder ="notes"
+                                    onChange={(event) => {setNotes(event.target.value);}}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -105,6 +183,12 @@ function Props() {
                                         <tr>
                                             <td>{prop.name}</td>
                                             <td>{prop.material}</td>
+                                            <td>{prop.picture}</td>
+                                            <td>{prop.location}</td>
+                                            <td>{prop.useLog}</td>
+                                            <td>{prop.mending}</td>
+                                            <td>{prop.toDo}</td>
+                                            <td>{prop.notes}</td>
                                         </tr>
                                     </>
                                 );

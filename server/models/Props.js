@@ -11,7 +11,7 @@ const PropSchema = new mongoose.Schema({
     },
     itemCode: {
         type: String,
-        required: true
+        required: false
     },
     picture: {
         type: String,
@@ -28,7 +28,7 @@ const PropSchema = new mongoose.Schema({
     lastCleaned: {
         type: Date,
         default: Date.now,
-        required: true
+        required: false
     },
     useLog: {
         type: String,

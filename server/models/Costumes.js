@@ -15,7 +15,7 @@ const CostumeSchema = new mongoose.Schema({
     },
     itemCode: {
         type: String,
-	    required: true
+	    required: false
     },
     size: {
         type: String,
@@ -39,12 +39,12 @@ const CostumeSchema = new mongoose.Schema({
     },
     useLogs: {
         type: String,
-        required: true
+        required: false
     },
     lastCleaned: {
         type: Date,
         default: Date.now,
-        required: true
+        required: false
     },
     mending: {
         type: String,
