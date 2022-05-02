@@ -11,6 +11,7 @@ function Costumes(){
     const [material, setMaterial] = useState("");
     const [size, setSize] = useState("");
     const [color, setColor] = useState("");
+    const [timePeriod, setTimePeriod] = useState("");
     const [clothingType, setClothingType] = useState("");
     const [location, setLocation] = useState("");
     const [picture, setPicture] = useState("");
@@ -38,6 +39,7 @@ function Costumes(){
             material,
             size,
             color,
+            timePeriod,
             clothingType,
             location,
             picture,
@@ -55,6 +57,7 @@ function Costumes(){
                 { material: material },
                 { size: size },
                 { color: color },
+                { timePeriod: timePeriod },
                 { clothingType: clothingType },
                 { location: location },
                 { picture: picture },
@@ -129,6 +132,16 @@ function Costumes(){
                                     type="text"
                                     placeholder ="color"
                                     onChange={(event) => {setColor(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Time Period</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="time period"
+                                    onChange={(event) => {setTimePeriod(event.target.value);}}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -233,6 +246,7 @@ function Costumes(){
                         <th>Material</th>
                         <th>Size</th>
                         <th>Color</th>
+                        <th>Time Period</th>
                         <th>Clothing Type</th>
                         <th>Location</th>
                         <th>Picture</th>
@@ -254,6 +268,7 @@ function Costumes(){
                                 <td>{costume.material}</td>
                                 <td>{costume.size}</td>
                                 <td>{costume.color}</td>
+                                <td>{costume.timePeriod}</td>
                                 <td>{costume.clothingType}</td>
                                 <td>{costume.location}</td>
                                 <td>{costume.picture}</td>
