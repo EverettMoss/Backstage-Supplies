@@ -6,11 +6,14 @@ import { Table, Button, Modal, Form } from 'react-bootstrap'
 
 function Props() {
     const [listOfProps, setlistOfProps] = useState([]);
+    const [itemCode, setItemCode] = useState("");
     const [name, setName] = useState("");
+    const [propType, setPropType] = useState("");
     const [material, setMaterial] = useState("");
     const [picture, setPicture] = useState("");
     const [location, setLocation] = useState("");
     const [useLog, setUseLog] = useState("");
+    const [lastCleaned, setLastCleaned] = useState("");
     const [mending, setMending] = useState("");
     const [toDo, setToDo] = useState("");
     const [notes, setNotes] = useState("");
@@ -28,22 +31,28 @@ function Props() {
 
     const createProp = () => {
         Axios.post("http://localhost:8000/createProp", {
+            itemCode,
             name,
+            propType,
             material,
             picture,
             location,
             useLog,
+            lastCleaned,
             mending,
             toDo,
             notes
         }).then((response) => {
             setlistOfProps([
                 ...listOfProps,
+		        { itemCode: itemCode },
                 { name: name },
+		        { propType: propType },
                 { material: material },
                 { picture: picture },
                 { location: location },
                 { useLog: useLog },
+		        { lastCleaned: lastCleaned },
                 { mending: mending },
                 { toDo: toDo },
                 { notes: notes }
@@ -69,11 +78,31 @@ function Props() {
                         <Form>
                             
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Item Code</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="item code"
+                                    onChange={(event) => {setItemCode(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control
                                     type="text"
                                     placeholder="name"
                                     onChange={(event) => {setName(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Prop Type</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="prop type"
+                                    onChange={(event) => {setPropType(event.target.value);}}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -114,6 +143,16 @@ function Props() {
                                     type="text"
                                     placeholder ="use log"
                                     onChange={(event) => {setUseLog(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Last Cleaned</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="last cleaned"
+                                    onChange={(event) => {setLastCleaned(event.target.value);}}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -166,11 +205,14 @@ function Props() {
                 <Table striped bordered hover>
                     <thead>
                         <tr>
+                            <th>Item Code</th>
                             <th>Name</th>
+                            <th>Prop Type</th>
                             <th>Material</th>
                             <th>Picture</th>
                             <th>Location</th>
                             <th>Use Log</th>
+                            <th>Last Cleaned</th>
                             <th>Mending Log</th>
                             <th>To-Do</th>
                             <th>Notes</th>
@@ -182,11 +224,14 @@ function Props() {
                                 return (
                                     <>
                                         <tr>
+                                            <td>{prop.itemCode}</td>
                                             <td>{prop.name}</td>
+                                            <td>{prop.propType}</td>
                                             <td>{prop.material}</td>
                                             <td>{prop.picture}</td>
                                             <td>{prop.location}</td>
                                             <td>{prop.useLog}</td>
+                                            <td>{prop.lastCleaned}</td>
                                             <td>{prop.mending}</td>
                                             <td>{prop.toDo}</td>
                                             <td>{prop.notes}</td>

@@ -6,6 +6,7 @@ import { Table, Button, Modal, Form } from 'react-bootstrap'
 
 function Costumes(){
     const [listOfCostumes, setlistOfCostumes] = useState([]);
+    const [itemCode, setItemCode] = useState("");
     const [name, setName] = useState("");
     const [material, setMaterial] = useState("");
     const [size, setSize] = useState("");
@@ -14,7 +15,7 @@ function Costumes(){
     const [location, setLocation] = useState("");
     const [picture, setPicture] = useState("");
     const [useLog, setUseLog] = useState("");
-    const [lastCleaned, setlastCleaned] = useState("");
+    const [lastCleaned, setLastCleaned] = useState("");
     const [mending, setMending] = useState("");
     const [toDo, setToDo] = useState("");
     const [notes, setNotes] = useState("");
@@ -32,6 +33,7 @@ function Costumes(){
 
     const createCostume = () => {
         Axios.post("http://localhost:8000/createCostume", {
+            itemCode,
             name,
             material,
             size,
@@ -48,6 +50,7 @@ function Costumes(){
         }).then((response) => {
             setlistOfCostumes([
                 ...listOfCostumes,
+                { itemCode: itemCode },
                 { name: name },
                 { material: material },
                 { size: size },
@@ -56,7 +59,6 @@ function Costumes(){
                 { location: location },
                 { picture: picture },
                 { useLog: useLog },
-                { name: name },
                 { lastCleaned: lastCleaned },
                 { mending: mending },
                 { toDo: toDo },
@@ -81,6 +83,16 @@ function Costumes(){
                     <Modal.Body>
                         <Form>
                             
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Item Code</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="item code"
+                                    onChange={(event) => {setItemCode(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control
@@ -146,7 +158,7 @@ function Costumes(){
                                 <Form.Control
                                     type="text"
                                     placeholder ="pic"
-                                    onChange={(event) => {setMending(event.target.value);}}
+                                    onChange={(event) => {setPicture(event.target.value);}}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -156,7 +168,17 @@ function Costumes(){
                                 <Form.Control
                                     type="text"
                                     placeholder ="use logs"
-                                    onChange={(event) => {setMending(event.target.value);}}
+                                    onChange={(event) => {setUseLog(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Last Cleaned</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder ="last cleaned"
+                                    onChange={(event) => {setLastCleaned(event.target.value);}}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -206,6 +228,7 @@ function Costumes(){
             <Table striped bordered hover>
                 <thead>
                     <tr>
+                        <th>Item Code</th>
                         <th>Name</th>
                         <th>Material</th>
                         <th>Size</th>
@@ -226,6 +249,7 @@ function Costumes(){
                         return(
                             <>
                             <tr>
+                                <td>{costume.itemCode}</td>
                                 <td>{costume.name}</td>
                                 <td>{costume.material}</td>
                                 <td>{costume.size}</td>
