@@ -87,7 +87,7 @@ function Costumes() {
     return (
         <div>
             <h1>Welcome to Costumes Page!</h1>
-            <div className="CostumeDisplay">
+            <div data-testid="costume-1" className="CostumeDisplay">
                 <Button className="create-button" variant="outline-secondary" onClick={handleShow}>Add Costume</Button>
 
                 <Modal show={show} onHide={handleClose}>

@@ -74,6 +74,12 @@ function Props() {
         });
     };
 
+    const updateprop = (prop) => {
+        console.log(prop.material) 
+
+        //Axios.put(`http://localhost:8000/updateProp/${id}`)
+    };
+
     return (
         <div>
             <h1>Welcome to Props Page!</h1>
@@ -248,7 +254,7 @@ function Props() {
                                 return (
                                     <>
                                         <tr>
-                                            <td> <Button variant="outline-success" onClick={ () => deleteprop(prop._id) } >Delete</Button>  <Button variant="outline-success">Edit</Button> </td>
+                                            <td> <Button variant="outline-success" onClick={ () => deleteprop(prop._id) } >Delete</Button>  <Button variant="outline-success" onClick={ () => updateprop(prop) }>Edit</Button> </td>
                                             <td>{prop.itemCode}</td>
                                             <td>{prop.name}</td>
                                             <td>{prop.propType}</td>
