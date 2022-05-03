@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const UserModel = require("./Users");
 
 const CostumeSchema = new mongoose.Schema({
     picture: {
@@ -16,6 +17,10 @@ const CostumeSchema = new mongoose.Schema({
     itemCode: {
         type: String,
 	    required: false
+    },
+    checkedOutBy: {
+        type: UserModel,
+        required: false
     },
     size: {
         type: String,

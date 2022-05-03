@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const UserModel = require("./Users");
 
 const PropSchema = new mongoose.Schema({
     material: {
@@ -16,6 +17,10 @@ const PropSchema = new mongoose.Schema({
     picture: {
         type: String,
         required: false
+    },
+    checkedOutBy: {
+        type: UserModel,
+        required: false,
     },
     location: {
         type: String,
