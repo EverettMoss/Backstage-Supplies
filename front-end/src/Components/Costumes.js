@@ -1,10 +1,10 @@
 import React from "react";
 import Axios from "axios";
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table, Button, Modal, Form } from 'react-bootstrap'
 
-function Costumes(){
+function Costumes() {
     const [listOfCostumes, setlistOfCostumes] = useState([]);
     const [itemCode, setItemCode] = useState("");
     const [name, setName] = useState("");
@@ -68,7 +68,7 @@ function Costumes(){
                 { lastCleaned: lastCleaned },
                 { mending: mending },
                 { toDo: toDo },
-                { notes: notes }  
+                { notes: notes }
             ])
         });
 
@@ -76,25 +76,25 @@ function Costumes(){
 
     };
 
-    return(
+    return (
         <div>
             <h1>Welcome to Costumes Page!</h1>
             <div className="CostumeDisplay">
-            <Button variant="outline-secondary" onClick={handleShow}>Add Costume</Button>
+                <Button className="create-button" variant="outline-secondary" onClick={handleShow}>Add Costume</Button>
 
-            <Modal show={show} onHide={handleClose}>
+                <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>New Prop</Modal.Title>
+                        <Modal.Title>New Costume</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
-                            
+
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label>Item Code</Form.Label>
                                 <Form.Control
                                     type="text"
                                     placeholder="item code"
-                                    onChange={(event) => {setItemCode(event.target.value);}}
+                                    onChange={(event) => { setItemCode(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -104,7 +104,7 @@ function Costumes(){
                                 <Form.Control
                                     type="text"
                                     placeholder="name"
-                                    onChange={(event) => {setName(event.target.value);}}
+                                    onChange={(event) => { setName(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -123,8 +123,8 @@ function Costumes(){
                                 <Form.Label>Material</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="material"
-                                    onChange={(event) => {setMaterial(event.target.value);}}
+                                    placeholder="material"
+                                    onChange={(event) => { setMaterial(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -133,8 +133,8 @@ function Costumes(){
                                 <Form.Label>Size</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="size"
-                                    onChange={(event) => {setSize(event.target.value);}}
+                                    placeholder="size"
+                                    onChange={(event) => { setSize(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -143,8 +143,8 @@ function Costumes(){
                                 <Form.Label>Color</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="color"
-                                    onChange={(event) => {setColor(event.target.value);}}
+                                    placeholder="color"
+                                    onChange={(event) => { setColor(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -163,8 +163,8 @@ function Costumes(){
                                 <Form.Label>Clothing Type</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="clothing type"
-                                    onChange={(event) => {setClothingType(event.target.value);}}
+                                    placeholder="clothing type"
+                                    onChange={(event) => { setClothingType(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -173,8 +173,8 @@ function Costumes(){
                                 <Form.Label>Location</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="location"
-                                    onChange={(event) => {setLocation(event.target.value);}}
+                                    placeholder="location"
+                                    onChange={(event) => { setLocation(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -183,8 +183,8 @@ function Costumes(){
                                 <Form.Label>Picture</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="pic"
-                                    onChange={(event) => {setPicture(event.target.value);}}
+                                    placeholder="pic"
+                                    onChange={(event) => { setPicture(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -193,8 +193,8 @@ function Costumes(){
                                 <Form.Label>Use Log</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="use logs"
-                                    onChange={(event) => {setUseLog(event.target.value);}}
+                                    placeholder="use logs"
+                                    onChange={(event) => { setUseLog(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -203,8 +203,8 @@ function Costumes(){
                                 <Form.Label>Last Cleaned</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="last cleaned"
-                                    onChange={(event) => {setLastCleaned(event.target.value);}}
+                                    placeholder="last cleaned"
+                                    onChange={(event) => { setLastCleaned(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -213,8 +213,8 @@ function Costumes(){
                                 <Form.Label>Mending</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="mending log"
-                                    onChange={(event) => {setMending(event.target.value);}}
+                                    placeholder="mending log"
+                                    onChange={(event) => { setMending(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -223,8 +223,8 @@ function Costumes(){
                                 <Form.Label>To-Do</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="to do"
-                                    onChange={(event) => {setToDo(event.target.value);}}
+                                    placeholder="to do"
+                                    onChange={(event) => { setToDo(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -233,12 +233,12 @@ function Costumes(){
                                 <Form.Label>Notes</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="notes"
-                                    onChange={(event) => {setNotes(event.target.value);}}
+                                    placeholder="notes"
+                                    onChange={(event) => { setNotes(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
-                    
+
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
@@ -251,55 +251,54 @@ function Costumes(){
                     </Modal.Footer>
                 </Modal>
 
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>Item Code</th>
-                        <th>Name</th>
-                        <th>Checked Out By</th>
-                        <th>Material</th>
-                        <th>Size</th>
-                        <th>Color</th>
-                        <th>Time Period</th>
-                        <th>Clothing Type</th>
-                        <th>Location</th>
-                        <th>Picture</th>
-                        <th>Use Log</th>
-                        <th>Last Cleaned</th>
-                        <th>Mending Log</th>
-                        <th>To-Do</th>
-                        <th>Notes</th>
-                    </tr>
-                </thead>  
-                <tbody>
-                {
-                    listOfCostumes.map((costume) => {
-                        return(
-                            <>
-                            <tr>
-                                <td>{costume.itemCode}</td>
-                                <td>{costume.name}</td>
-                                <td>{costume.checkedOutBy}</td>
-                                <td>{costume.material}</td>
-                                <td>{costume.size}</td>
-                                <td>{costume.color}</td>
-                                <td>{costume.timePeriod}</td>
-                                <td>{costume.clothingType}</td>
-                                <td>{costume.location}</td>
-                                <td>{costume.picture}</td>
-                                <td>{costume.useLogs}</td>
-                                <td>{costume.lastCleaned}</td>
-                                <td>{costume.mending}</td>
-                                <td>{costume.toDO}</td>
-                                <td>{costume.notes}</td>
-                            </tr>
-                            </>
-                        );
-                    })
-                }
-                
-            </tbody>
-            </Table>
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>Actions</th>
+                            <th>Item Code</th>
+                            <th>Name</th>
+                            <th>Material</th>
+                            <th>Size</th>
+                            <th>Color</th>
+                            <th>Clothing Type</th>
+                            <th>Location</th>
+                            <th>Picture</th>
+                            <th>Use Log</th>
+                            <th>Last Cleaned</th>
+                            <th>Mending Log</th>
+                            <th>To-Do</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            listOfCostumes.map((costume) => {
+                                return (
+                                    <>
+                                        <tr>
+                                            <td><Button variant="outline-success" >Delete</Button>  <Button variant="outline-success">Edit</Button></td>
+                                            <td>{costume.itemCode}</td>
+                                            <td>{costume.name}</td>
+                                            <td>{costume.material}</td>
+                                            <td>{costume.size}</td>
+                                            <td>{costume.color}</td>
+                                            <td>{costume.clothingType}</td>
+                                            <td>{costume.location}</td>
+                                            <td>{costume.picture}</td>
+                                            <td>{costume.useLogs}</td>
+                                            <td>{costume.lastCleaned}</td>
+                                            <td>{costume.mending}</td>
+                                            <td>{costume.toDO}</td>
+                                            <td>{costume.notes}</td>
+                                        </tr>
+                                    </>
+                                );
+                            })
+                        }
+
+                    </tbody>
+                </Table>
+
             </div>
         </div>
     )

@@ -13,9 +13,9 @@ app.use(cors());
 mongoose.connect("mongodb+srv://Everett:dazkir-7vykre-bimVon@cluster0.tkewu.mongodb.net/BackStageSupplies?retryWrites=true&w=majority");
 
 //prop routes
-app.get("/getProps", (req,res) => {
+app.get("/getProps", (req, res) => {
     PropModel.find({}, (err, result) => {
-        if(err) {
+        if (err) {
             res.json(err);
         } else {
             res.json(result);
@@ -23,7 +23,7 @@ app.get("/getProps", (req,res) => {
     });
 });
 
-app.post("/createProp", async (req,res) => {
+app.post("/createProp", async (req, res) => {
     const prop = req.body;
     const newProp = new PropModel(prop);
     await newProp.save();
@@ -31,10 +31,25 @@ app.post("/createProp", async (req,res) => {
     res.json(prop);
 });
 
+app.put('/updateProp', async (req, res) => {
+    const newProp = req.body.newName
+    const id = req.body.id
+
+    try {
+        await PropModel.findById(id, (error, propToUpdate) => {
+            propToUpdate.name = newName;
+            propToUpdate.save()
+        })
+    } catch (err) {
+        console.log(err)
+    }
+
+});
+
 //costume routes
-app.get("/getCostumes", (req,res) => {
+app.get("/getCostumes", (req, res) => {
     CostumeModel.find({}, (err, result) => {
-        if(err) {
+        if (err) {
             res.json(err);
         } else {
             res.json(result);
@@ -42,7 +57,13 @@ app.get("/getCostumes", (req,res) => {
     });
 });
 
-app.post("/createCostume", async (req,res) => {
+app.delete('/deleteProp:id', async (req,res) => {
+    const id = req.params.id;
+    await PropModel.findByIdAndRemove(id).exec();
+    res.send('itemdleted');
+})
+
+app.post("/createCostume", async (req, res) => {
     const costume = req.body;
     const newCostume = new CostumeModel(costume);
     await newCostume.save();
@@ -68,6 +89,8 @@ app.post("/createUser", async (req,res) => {
 
     res.json(user);
 });
+
+
 
 
 //server

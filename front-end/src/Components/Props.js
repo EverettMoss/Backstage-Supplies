@@ -47,21 +47,26 @@ function Props() {
         }).then((response) => {
             setlistOfProps([
                 ...listOfProps,
-		        { itemCode: itemCode },
+                { itemCode: itemCode },
                 { name: name },
-		        { propType: propType },
+                { propType: propType },
                 { material: material },
                 { picture: picture },
                 { checkedOutBy: checkedOutBy },
                 { location: location },
                 { useLog: useLog },
-		        { lastCleaned: lastCleaned },
+                { lastCleaned: lastCleaned },
                 { mending: mending },
                 { toDo: toDo },
                 { notes: notes }
             ])
-        }); 
+        });
         handleClose();
+
+    };
+
+    const deleteProp = (id) => {
+        Axios.delete(`http://localhost:8000/deleteProp/${id}`)
 
     };
 
@@ -69,7 +74,7 @@ function Props() {
         <div>
             <h1>Welcome to Props Page!</h1>
             <div>
-                <Button variant="outline-secondary" onClick={handleShow}>
+                <Button className="create-button" variant="outline-secondary" onClick={handleShow}>
                     Create Prop
                 </Button>
 
@@ -79,13 +84,13 @@ function Props() {
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
-                            
+
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label>Item Code</Form.Label>
                                 <Form.Control
                                     type="text"
                                     placeholder="item code"
-                                    onChange={(event) => {setItemCode(event.target.value);}}
+                                    onChange={(event) => { setItemCode(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -95,7 +100,7 @@ function Props() {
                                 <Form.Control
                                     type="text"
                                     placeholder="name"
-                                    onChange={(event) => {setName(event.target.value);}}
+                                    onChange={(event) => { setName(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -105,7 +110,7 @@ function Props() {
                                 <Form.Control
                                     type="text"
                                     placeholder="prop type"
-                                    onChange={(event) => {setPropType(event.target.value);}}
+                                    onChange={(event) => { setPropType(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -114,8 +119,8 @@ function Props() {
                                 <Form.Label>Material</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="material"
-                                    onChange={(event) => {setMaterial(event.target.value);}}
+                                    placeholder="material"
+                                    onChange={(event) => { setMaterial(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -124,8 +129,8 @@ function Props() {
                                 <Form.Label>Picture</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="picture"
-                                    onChange={(event) => {setPicture(event.target.value);}}
+                                    placeholder="picture"
+                                    onChange={(event) => { setPicture(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -144,8 +149,8 @@ function Props() {
                                 <Form.Label>Location</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="location"
-                                    onChange={(event) => {setLocation(event.target.value);}}
+                                    placeholder="location"
+                                    onChange={(event) => { setLocation(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -154,8 +159,8 @@ function Props() {
                                 <Form.Label>Use Log</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="use log"
-                                    onChange={(event) => {setUseLog(event.target.value);}}
+                                    placeholder="use log"
+                                    onChange={(event) => { setUseLog(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -165,7 +170,7 @@ function Props() {
                                 <Form.Control
                                     type="text"
                                     placeholder="last cleaned"
-                                    onChange={(event) => {setLastCleaned(event.target.value);}}
+                                    onChange={(event) => { setLastCleaned(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -174,8 +179,8 @@ function Props() {
                                 <Form.Label>Mending</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="mending log"
-                                    onChange={(event) => {setMending(event.target.value);}}
+                                    placeholder="mending log"
+                                    onChange={(event) => { setMending(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -184,8 +189,8 @@ function Props() {
                                 <Form.Label>To-Do</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="to do"
-                                    onChange={(event) => {setToDo(event.target.value);}}
+                                    placeholder="to do"
+                                    onChange={(event) => { setToDo(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -194,12 +199,12 @@ function Props() {
                                 <Form.Label>Notes</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    placeholder ="notes"
-                                    onChange={(event) => {setNotes(event.target.value);}}
+                                    placeholder="notes"
+                                    onChange={(event) => { setNotes(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
-                    
+
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
@@ -218,6 +223,7 @@ function Props() {
                 <Table striped bordered hover>
                     <thead>
                         <tr>
+                            <th>Actions</th>
                             <th>Item Code</th>
                             <th>Name</th>
                             <th>Prop Type</th>
@@ -238,6 +244,7 @@ function Props() {
                                 return (
                                     <>
                                         <tr>
+                                            <td> <Button variant="outline-success" onClick={()=> deleteProp(prop.id)} >Delete</Button>  <Button variant="outline-success">Edit</Button> </td>
                                             <td>{prop.itemCode}</td>
                                             <td>{prop.name}</td>
                                             <td>{prop.propType}</td>
