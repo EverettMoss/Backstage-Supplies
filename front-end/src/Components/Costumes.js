@@ -76,6 +76,14 @@ function Costumes() {
 
     };
 
+    const deletecostume = (id) => {
+        Axios.delete(`http://localhost:8000/deletecostume/${id}`).then( () => {
+            setlistOfCostumes(listOfCostumes.filter( (value) => {
+                return value._id != id;
+            }))
+        });
+    };
+
     return (
         <div>
             <h1>Welcome to Costumes Page!</h1>
@@ -276,7 +284,7 @@ function Costumes() {
                                 return (
                                     <>
                                         <tr>
-                                            <td><Button variant="outline-success" >Delete</Button>  <Button variant="outline-success">Edit</Button></td>
+                                            <td><Button variant="outline-success" onClick={ () => deletecostume(costume._id) }>Delete</Button>  <Button variant="outline-success">Edit</Button></td>
                                             <td>{costume.itemCode}</td>
                                             <td>{costume.name}</td>
                                             <td>{costume.material}</td>

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table, Button, Modal, Form } from 'react-bootstrap'
 
+
 function Props() {
     const [listOfProps, setlistOfProps] = useState([]);
     const [itemCode, setItemCode] = useState("");
@@ -65,9 +66,12 @@ function Props() {
 
     };
 
-    const deleteProp = (id) => {
-        Axios.delete(`http://localhost:8000/deleteProp/${id}`)
-
+    const deleteprop = (id) => {
+        Axios.delete(`http://localhost:8000/deleteProp/${id}`).then( () => {
+            setlistOfProps(listOfProps.filter( (value) => {
+                return value._id != id;
+            }))
+        });
     };
 
     return (
@@ -244,7 +248,7 @@ function Props() {
                                 return (
                                     <>
                                         <tr>
-                                            <td> <Button variant="outline-success" onClick={()=> deleteProp(prop.id)} >Delete</Button>  <Button variant="outline-success">Edit</Button> </td>
+                                            <td> <Button variant="outline-success" onClick={ () => deleteprop(prop._id) } >Delete</Button>  <Button variant="outline-success">Edit</Button> </td>
                                             <td>{prop.itemCode}</td>
                                             <td>{prop.name}</td>
                                             <td>{prop.propType}</td>

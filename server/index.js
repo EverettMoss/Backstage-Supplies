@@ -46,6 +46,12 @@ app.put('/updateProp', async (req, res) => {
 
 });
 
+app.delete('/deleteprop/:id', (req, res) => {
+    PropModel.findByIdAndDelete(req.params.id)
+      .then(() => res.json('deleted.'))
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
+
 //costume routes
 app.get("/getCostumes", (req, res) => {
     CostumeModel.find({}, (err, result) => {
@@ -57,12 +63,6 @@ app.get("/getCostumes", (req, res) => {
     });
 });
 
-app.delete('/deleteProp:id', async (req,res) => {
-    const id = req.params.id;
-    await PropModel.findByIdAndRemove(id).exec();
-    res.send('itemdleted');
-})
-
 app.post("/createCostume", async (req, res) => {
     const costume = req.body;
     const newCostume = new CostumeModel(costume);
@@ -70,6 +70,12 @@ app.post("/createCostume", async (req, res) => {
 
     res.json(costume);
 });
+
+app.delete('/deletecostume/:id', (req, res) => {
+    CostumeModel.findByIdAndDelete(req.params.id)
+      .then(() => res.json('deleted.'))
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
 
 //user routes
 app.get("/getUsers", (req,res) => {
