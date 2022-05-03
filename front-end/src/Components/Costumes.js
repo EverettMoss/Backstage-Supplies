@@ -8,6 +8,7 @@ function Costumes(){
     const [listOfCostumes, setlistOfCostumes] = useState([]);
     const [itemCode, setItemCode] = useState("");
     const [name, setName] = useState("");
+    const [checkedOutBy, setCheckedOutBy] = useState("");
     const [material, setMaterial] = useState("");
     const [size, setSize] = useState("");
     const [color, setColor] = useState("");
@@ -36,6 +37,7 @@ function Costumes(){
         Axios.post("http://localhost:8000/createCostume", {
             itemCode,
             name,
+            checkedOutBy,
             material,
             size,
             color,
@@ -54,6 +56,7 @@ function Costumes(){
                 ...listOfCostumes,
                 { itemCode: itemCode },
                 { name: name },
+                { checkedOutBy: checkedOutBy },
                 { material: material },
                 { size: size },
                 { color: color },
@@ -102,6 +105,16 @@ function Costumes(){
                                     type="text"
                                     placeholder="name"
                                     onChange={(event) => {setName(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Checked Out By</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="checked out by"
+                                    onChange={(event) => {setCheckedOutBy(event.target.value);}}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -243,6 +256,7 @@ function Costumes(){
                     <tr>
                         <th>Item Code</th>
                         <th>Name</th>
+                        <th>Checked Out By</th>
                         <th>Material</th>
                         <th>Size</th>
                         <th>Color</th>
@@ -265,6 +279,7 @@ function Costumes(){
                             <tr>
                                 <td>{costume.itemCode}</td>
                                 <td>{costume.name}</td>
+                                <td>{costume.checkedOutBy}</td>
                                 <td>{costume.material}</td>
                                 <td>{costume.size}</td>
                                 <td>{costume.color}</td>

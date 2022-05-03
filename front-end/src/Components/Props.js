@@ -11,6 +11,7 @@ function Props() {
     const [propType, setPropType] = useState("");
     const [material, setMaterial] = useState("");
     const [picture, setPicture] = useState("");
+    const [checkedOutBy, setCheckedOutBy] = useState("");
     const [location, setLocation] = useState("");
     const [useLog, setUseLog] = useState("");
     const [lastCleaned, setLastCleaned] = useState("");
@@ -36,6 +37,7 @@ function Props() {
             propType,
             material,
             picture,
+            checkedOutBy,
             location,
             useLog,
             lastCleaned,
@@ -50,6 +52,7 @@ function Props() {
 		        { propType: propType },
                 { material: material },
                 { picture: picture },
+                { checkedOutBy: checkedOutBy },
                 { location: location },
                 { useLog: useLog },
 		        { lastCleaned: lastCleaned },
@@ -123,6 +126,16 @@ function Props() {
                                     type="text"
                                     placeholder ="picture"
                                     onChange={(event) => {setPicture(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Checked Out By</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="checked out by"
+                                    onChange={(event) => {setCheckedOutBy(event.target.value);}}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -210,6 +223,7 @@ function Props() {
                             <th>Prop Type</th>
                             <th>Material</th>
                             <th>Picture</th>
+                            <th>Checked Out By</th>
                             <th>Location</th>
                             <th>Use Log</th>
                             <th>Last Cleaned</th>
@@ -229,6 +243,7 @@ function Props() {
                                             <td>{prop.propType}</td>
                                             <td>{prop.material}</td>
                                             <td>{prop.picture}</td>
+                                            <td>{prop.checkedOutBy}</td>
                                             <td>{prop.location}</td>
                                             <td>{prop.useLog}</td>
                                             <td>{prop.lastCleaned}</td>
