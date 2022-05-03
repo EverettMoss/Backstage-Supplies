@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const PropModel = require('./models/Props');
 const CostumeModel = require('./models/Costumes');
+const UserModel = require('./models/Users');
 
 const cors = require('cors');
 
@@ -14,9 +15,9 @@ mongoose.connect("mongodb+srv://Everett:dazkir-7vykre-bimVon@cluster0.tkewu.mong
 //prop routes
 app.get("/getProps", (req,res) => {
     PropModel.find({}, (err, result) => {
-        if(err){
+        if(err) {
             res.json(err);
-        } else{
+        } else {
             res.json(result);
         }
     });
@@ -33,9 +34,9 @@ app.post("/createProp", async (req,res) => {
 //costume routes
 app.get("/getCostumes", (req,res) => {
     CostumeModel.find({}, (err, result) => {
-        if(err){
+        if(err) {
             res.json(err);
-        } else{
+        } else {
             res.json(result);
         }
     });
@@ -47,6 +48,25 @@ app.post("/createCostume", async (req,res) => {
     await newCostume.save();
 
     res.json(costume);
+});
+
+//user routes
+app.get("/getUsers", (req,res) => {
+    UserModel.find({}, (err, result) => {
+        if(err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+app.post("/createUser", async (req,res) => {
+    const user = req.body;
+    const newUser = new UserModel(costume);
+    await newUser.save();
+
+    res.json(user);
 });
 
 
