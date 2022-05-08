@@ -24,6 +24,7 @@ function Props() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+
     useEffect(() => {
         Axios.get("http://localhost:8000/getProps").then((response) => {
             setlistOfProps(response.data);
@@ -74,10 +75,8 @@ function Props() {
         });
     };
 
-    const updateprop = (prop) => {
-        console.log(prop.material) 
-
-        //Axios.put(`http://localhost:8000/updateProp/${id}`)
+    const updateprop = (id) => {
+        Axios.patch(`http://localhost:8000/updateProp/${id}`)
     };
 
     return (
@@ -88,7 +87,7 @@ function Props() {
                     Create Prop
                 </Button>
 
-                <Modal show={show} onHide={handleClose}>
+                <Modal show={show} onHide={handleClose} className="create-prop">
                     <Modal.Header closeButton>
                         <Modal.Title>New Prop</Modal.Title>
                     </Modal.Header>
@@ -221,11 +220,13 @@ function Props() {
                         <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={createProp}>
-                            Save Changes
+                        <Button variant="success" onClick={createProp}>
+                            Create Prop
                         </Button>
                     </Modal.Footer>
                 </Modal>
+
+                
 
             </div>
 
@@ -254,7 +255,7 @@ function Props() {
                                 return (
                                     <>
                                         <tr>
-                                            <td> <Button variant="outline-success" onClick={ () => deleteprop(prop._id) } >Delete</Button>  <Button variant="outline-success" onClick={ () => updateprop(prop) }>Edit</Button> </td>
+                                            <td> <Button variant="outline-success" onClick={ () => deleteprop(prop._id) } >Delete</Button>  <Button variant="outline-success" onClick={handleShow}>Edit</Button> </td>
                                             <td>{prop.itemCode}</td>
                                             <td>{prop.name}</td>
                                             <td>{prop.propType}</td>

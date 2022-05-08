@@ -31,20 +31,30 @@ app.post("/createProp", async (req, res) => {
     res.json(prop);
 });
 
-app.put('/updateProp', async (req, res) => {
-    const newProp = req.body.newName
+/*
+app.put('/updateprop/:id', async (req, res) => {
     const id = req.body.id
+    PropModel.findById(req.params.id)
+});
+*/
 
-    try {
-        await PropModel.findById(id, (error, propToUpdate) => {
-            propToUpdate.name = newName;
-            propToUpdate.save()
-        })
-    } catch (err) {
+app.patch('/updateprop/:id', async (req,res) => {
+    const updatedProp = await PropModel.findByIdAndUpdate(req.params.id,req.body,{
+        new : true,
+        runValidators : true
+      })
+    try{
+        res.status(200).json({
+            status : 'Success',
+            data : {
+              updatedProp
+            }
+          })
+    }catch(err){
         console.log(err)
     }
+})
 
-});
 
 app.delete('/deleteprop/:id', (req, res) => {
     PropModel.findByIdAndDelete(req.params.id)
@@ -70,6 +80,23 @@ app.post("/createCostume", async (req, res) => {
 
     res.json(costume);
 });
+
+app.put('/updatecostume/:id', async (req,res) => {
+    const updatedCostume = await CostumeModel.findByIdAndUpdate(req.params.id,req.body,{
+        new : true,
+        runValidators : true
+      })
+    try{
+        res.status(200).json({
+            status : 'Success',
+            data : {
+              updatedCostume
+            }
+          })
+    }catch(err){
+        console.log(err)
+    }
+})
 
 app.delete('/deletecostume/:id', (req, res) => {
     CostumeModel.findByIdAndDelete(req.params.id)
