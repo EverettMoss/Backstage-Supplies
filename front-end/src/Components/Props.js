@@ -17,13 +17,6 @@ Object.keys(data).forEach(key => {
 console.log(Object.keys(data).length);
 }
 
-const cp = () => {
-    console.log("hiiiiiiiii");
-};
-
-
-
-
 function Props() {
     const [listOfProps, setlistOfProps] = useState([]);
     const [itemCode, setItemCode] = useState("");
@@ -72,7 +65,6 @@ function Props() {
             checkedOutBy,
             location,
             useLog,
-            lastCleaned,
             mending,
             toDo,
             notes
@@ -87,7 +79,6 @@ function Props() {
                 { checkedOutBy: checkedOutBy },
                 { location: location },
                 { useLog: useLog },
-                { lastCleaned: lastCleaned },
                 { mending: mending },
                 { toDo: toDo },
                 { notes: notes }
@@ -106,9 +97,10 @@ function Props() {
     };
 
     const updateprop = (id) => {
-        currProp = removeEmptyFields(currProp);
-        console.log(currProp.notes)
-        Axios.patch(`http://localhost:8000/updateprop/${currID}`, currProp);
+
+        Axios.put(`http://localhost:8000/updateprop/${currID}`, {
+            "notes": "hard coded"
+        });
         handleCloseEDIT();
     };
 
@@ -207,16 +199,9 @@ function Props() {
                                     autoFocus
                                 />
                             </Form.Group>
-
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>Last Cleaned</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="last cleaned"
-                                    onChange={(event) => { setLastCleaned(event.target.value); }}
-                                    autoFocus
-                                />
-                            </Form.Group>
+                            
+                            
+                            
 
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label>Mending</Form.Label>
@@ -341,14 +326,7 @@ function Props() {
                                 />
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>Last Cleaned</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    onChange={(event) => { setLastCleaned(event.target.value); }}
-                                    autoFocus
-                                />
-                            </Form.Group>
+                            
 
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <Form.Label>Mending</Form.Label>

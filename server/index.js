@@ -38,7 +38,7 @@ app.put('/updateprop/:id', async (req, res) => {
 });
 */
 
-app.patch('/updateprop/:id', async (req,res) => {
+app.put('/updateprop/:id', async (req,res) => {
     const updatedProp = await PropModel.findByIdAndUpdate(req.params.id,req.body,{
         new : true,
         runValidators : true
