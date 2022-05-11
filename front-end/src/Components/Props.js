@@ -4,6 +4,36 @@ import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table, Button, Modal, Form } from 'react-bootstrap'
 
+var currID = "";
+var currProp = [];
+
+function disableEmptyInputs(form) {
+    var controls = form.elements;
+    for (var i=0, iLen=controls.length; i<iLen; i++) {
+      controls[i].disabled = controls[i].value == '';
+    }
+  }
+
+  const onSubmit = data => {    
+    removeEmptyFields(data);
+}
+
+function removeEmptyFields(data) {
+console.log(Object.keys(data).length);
+Object.keys(data).forEach(key => {
+    if (data[key] === '' || data[key] == null) {
+    delete data[key];
+    }
+});
+console.log(Object.keys(data).length);
+}
+
+const cp = () => {
+    console.log("hiiiiiiiii");
+};
+
+
+
 
 function Props() {
     const [listOfProps, setlistOfProps] = useState([]);
@@ -20,10 +50,21 @@ function Props() {
     const [toDo, setToDo] = useState("");
     const [notes, setNotes] = useState("");
 
+    // create prop - modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    // edit prop - modal
+    const [showEDIT, setShowEDIT] = useState(false);
+    const handleCloseEDIT = () => setShowEDIT(false);
+    const handleShowEDIT = (prop) => {
+        setShowEDIT(true);
+        currID = prop._id;
+        currProp=prop;
+
+        console.log(currProp._id);
+    }
 
     useEffect(() => {
         Axios.get("http://localhost:8000/getProps").then((response) => {
@@ -76,7 +117,10 @@ function Props() {
     };
 
     const updateprop = (id) => {
-        Axios.patch(`http://localhost:8000/updateProp/${id}`)
+        currProp = removeEmptyFields(currProp);
+        console.log(currProp.notes)
+        Axios.patch(`http://localhost:8000/updateprop/${currID}`, currProp);
+        handleCloseEDIT();
     };
 
     return (
@@ -209,7 +253,8 @@ function Props() {
                                 <Form.Control
                                     type="text"
                                     placeholder="notes"
-                                    onChange={(event) => { setNotes(event.target.value); }}
+                                    //onChange={(event) => { setNotes(event.target.value); }}
+                                    onChange={(event) => currProp.notes}
                                     autoFocus
                                 />
                             </Form.Group>
@@ -225,10 +270,134 @@ function Props() {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-
-                
-
             </div>
+
+            <Modal show={showEDIT} onHide={handleCloseEDIT} className="create-prop">
+                    <Modal.Header closeButton>
+                        <Modal.Title>Edit Prop</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Item Code</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    onChange={(event) => { setItemCode(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    onChange={(event) => { setName(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Prop Type</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    onChange={(event) => { setPropType(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Material</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    onChange={(event) => { setMaterial(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Picture</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    onChange={(event) => { setPicture(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Checked Out By</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    onChange={(event) => {setCheckedOutBy(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Location</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    onChange={(event) => { setLocation(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Use Log</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    onChange={(event) => { setUseLog(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Last Cleaned</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    onChange={(event) => { setLastCleaned(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Mending</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    onChange={(event) => { setMending(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>To-Do</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    onChange={(event) => { setToDo(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Notes</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    onChange={(event) => { setNotes(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleCloseEDIT}>
+                            Close
+                        </Button>
+                        <Button variant="success" onClick={() => updateprop(currID)}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
 
             <div className="PropsDisplay">
                 <Table striped bordered hover>
@@ -255,7 +424,7 @@ function Props() {
                                 return (
                                     <>
                                         <tr>
-                                            <td> <Button variant="outline-success" onClick={ () => deleteprop(prop._id) } >Delete</Button>  <Button variant="outline-success" onClick={handleShow}>Edit</Button> </td>
+                                            <td> <Button variant="outline-success" onClick={ () => deleteprop(prop._id) } >Delete</Button>  <Button variant="outline-success" onClick={ () => handleShowEDIT(prop) }>Edit</Button> </td>
                                             <td>{prop.itemCode}</td>
                                             <td>{prop.name}</td>
                                             <td>{prop.propType}</td>

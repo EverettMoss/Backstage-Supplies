@@ -4,11 +4,11 @@ const UserModel = require("./Users");
 const PropSchema = new mongoose.Schema({
     material: {
         type: String,
-        required: true
+        required: false
     },
     name: {
         type: String,
-        required: true
+        required: false
     },
     itemCode: {
         type: String,
