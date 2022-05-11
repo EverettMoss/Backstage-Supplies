@@ -14,19 +14,19 @@ function Home(){
             
             <Carousel>
                 <Carousel.Item>
-                    <img width={900} height={500} src={comedy} />
+                    <img width={900} height={500} src={comedy} alt="First slide" />
                 </Carousel.Item>
                 <Carousel.Item>
-                    <img width={900} height={500} src={glass} />
+                    <img width={900} height={500} src={glass} alt="Second slide" />
                 </Carousel.Item>
                 <Carousel.Item>
-                    <img width={900} height={500} src={shakespeare} />
+                    <img width={900} height={500} src={shakespeare} alt="Third slide"/>
                 </Carousel.Item>
                 <Carousel.Item>
-                    <img width={900} height={500} src={theatre} />
+                    <img width={900} height={500} src={theatre} alt="Fourth slide" />
                 </Carousel.Item>
                 <Carousel.Item>
-                    <img width={900} height={500} src={wolves} />
+                    <img width={900} height={500} src={wolves} alt="Fifth slide" />
                 </Carousel.Item>
             </Carousel>;
 
