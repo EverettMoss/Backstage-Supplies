@@ -99,7 +99,7 @@ function Props() {
     const updateprop = (id) => {
 
         Axios.put(`http://localhost:8000/updateprop/${currID}`, {
-            "notes": "hard coded"
+            "notes": "edited"
         });
         handleCloseEDIT();
     };
