@@ -7,16 +7,6 @@ import { Table, Button, Modal, Form } from 'react-bootstrap'
 var currID = "";
 var currProp = [];
 
-function removeEmptyFields(data) {
-console.log(Object.keys(data).length);
-Object.keys(data).forEach(key => {
-    if (data[key] === '' || data[key] == null) {
-    delete data[key];
-    }
-});
-console.log(Object.keys(data).length);
-}
-
 function Props() {
     const [listOfProps, setlistOfProps] = useState([]);
     const [itemCode, setItemCode] = useState("");

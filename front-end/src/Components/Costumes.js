@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table, Button, Modal, Form } from 'react-bootstrap'
 
+var currID = "";
+var currCostume = [];
+
 function Costumes() {
     const [listOfCostumes, setlistOfCostumes] = useState([]);
     const [itemCode, setItemCode] = useState("");
@@ -25,6 +28,15 @@ function Costumes() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    // edit costume - modal
+    const [showEDIT, setShowEDIT] = useState(false);
+    const handleCloseEDIT = () => setShowEDIT(false);
+    const handleShowEDIT = (costume) => {
+        setShowEDIT(true);
+        currID = costume._id;
+        currCostume=costume;
+    }
 
     useEffect(() => {
         Axios.get("http://localhost:8000/getCostumes").then((response) => {
@@ -80,6 +92,14 @@ function Costumes() {
                 return value._id != id;
             }))
         });
+    };
+
+    const updatecostume = (id) => {
+        console.log(currID)
+        Axios.put(`http://localhost:8000/updatecostume/${currID}`, {
+            "notes": "costume edited"
+        });
+        handleCloseEDIT();
     };
 
     return (
@@ -247,6 +267,165 @@ function Costumes() {
                     </Modal.Footer>
                 </Modal>
 
+                <Modal show={showEDIT} onHide={handleCloseEDIT}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Edit Costume</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Item Code</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="item code"
+                                    onChange={(event) => { setItemCode(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="name"
+                                    onChange={(event) => { setName(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Checked Out By</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="checked out by"
+                                    onChange={(event) => {setCheckedOutBy(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Material</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="material"
+                                    onChange={(event) => { setMaterial(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Size</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="size"
+                                    onChange={(event) => { setSize(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Color</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="color"
+                                    onChange={(event) => { setColor(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Time Period</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="time period"
+                                    onChange={(event) => {setTimePeriod(event.target.value);}}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Clothing Type</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="clothing type"
+                                    onChange={(event) => { setClothingType(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Location</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="location"
+                                    onChange={(event) => { setLocation(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Picture</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="pic"
+                                    onChange={(event) => { setPicture(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Use Log</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="use logs"
+                                    onChange={(event) => { setUseLog(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Mending</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="mending log"
+                                    onChange={(event) => { setMending(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>To-Do</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="to do"
+                                    onChange={(event) => { setToDo(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                                <Form.Label>Notes</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="notes"
+                                    onChange={(event) => { setNotes(event.target.value); }}
+                                    autoFocus
+                                />
+                            </Form.Group>
+
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleCloseEDIT}>
+                            Close
+                        </Button>
+                        <Button variant="success" onClick={() => updatecostume(currID)}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -272,7 +451,7 @@ function Costumes() {
                                 return (
                                     <>
                                         <tr>
-                                            <td><Button variant="outline-success" onClick={ () => deletecostume(costume._id) }>Delete</Button>  <Button variant="outline-success">Edit</Button></td>
+                                            <td><Button variant="outline-success" onClick={ () => deletecostume(costume._id) }>Delete</Button>  <Button variant="outline-success" onClick={ () => handleShowEDIT(costume) }>Edit</Button></td>
                                             <td>{costume.itemCode}</td>
                                             <td>{costume.name}</td>
                                             <td>{costume.material}</td>
