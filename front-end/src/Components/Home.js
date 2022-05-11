@@ -9,9 +9,9 @@ import wolves from '../static/Wolves.png';
 
 function Home(){
     return(
-        <div>
+        <div className="homepage">
             <h1>Welcome to BackStage Supplies!</h1>
-
+            
             <Carousel>
                 <Carousel.Item>
                     <img width={900} height={500} src={comedy} />
