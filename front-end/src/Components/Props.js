@@ -7,17 +7,6 @@ import { Table, Button, Modal, Form } from 'react-bootstrap'
 var currID = "";
 var currProp = [];
 
-function disableEmptyInputs(form) {
-    var controls = form.elements;
-    for (var i=0, iLen=controls.length; i<iLen; i++) {
-      controls[i].disabled = controls[i].value == '';
-    }
-  }
-
-  const onSubmit = data => {    
-    removeEmptyFields(data);
-}
-
 function removeEmptyFields(data) {
 console.log(Object.keys(data).length);
 Object.keys(data).forEach(key => {
@@ -136,6 +125,7 @@ function Props() {
                         <Modal.Title>New Prop</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
+                        
                         <Form>
 
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -253,13 +243,13 @@ function Props() {
                                 <Form.Control
                                     type="text"
                                     placeholder="notes"
-                                    //onChange={(event) => { setNotes(event.target.value); }}
-                                    onChange={(event) => currProp.notes}
+                                    onChange={(event) => { setNotes(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>
 
                         </Form>
+                        
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
