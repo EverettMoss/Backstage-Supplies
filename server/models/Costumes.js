@@ -12,7 +12,7 @@ const CostumeSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        required: true
+        required: false
     },
     itemCode: {
         type: String,
@@ -36,7 +36,7 @@ const CostumeSchema = new mongoose.Schema({
     },
     material: {
         type: String,
-        required: true
+        required: false
     },
     location: {
         type: String,

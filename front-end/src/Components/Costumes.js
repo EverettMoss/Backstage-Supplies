@@ -46,7 +46,6 @@ function Costumes() {
             location,
             picture,
             useLog,
-            lastCleaned,
             mending,
             toDo,
             notes
@@ -65,7 +64,6 @@ function Costumes() {
                 { location: location },
                 { picture: picture },
                 { useLog: useLog },
-                { lastCleaned: lastCleaned },
                 { mending: mending },
                 { toDo: toDo },
                 { notes: notes }
@@ -203,16 +201,6 @@ function Costumes() {
                                     type="text"
                                     placeholder="use logs"
                                     onChange={(event) => { setUseLog(event.target.value); }}
-                                    autoFocus
-                                />
-                            </Form.Group>
-
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>Last Cleaned</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="last cleaned"
-                                    onChange={(event) => { setLastCleaned(event.target.value); }}
                                     autoFocus
                                 />
                             </Form.Group>

@@ -31,13 +31,6 @@ app.post("/createProp", async (req, res) => {
     res.json(prop);
 });
 
-/*
-app.put('/updateprop/:id', async (req, res) => {
-    const id = req.body.id
-    PropModel.findById(req.params.id)
-});
-*/
-
 app.put('/updateprop/:id', async (req,res) => {
     const updatedProp = await PropModel.findByIdAndUpdate(req.params.id,req.body,{
         new : true,
